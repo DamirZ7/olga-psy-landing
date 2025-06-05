@@ -112,7 +112,7 @@ export function TestimonialsSection() {
                     <Quote className="h-10 w-10 text-primary/30" />
                   </div>
                   <p className="mb-6 italic text-muted-foreground">
-                    "{testimonial.content}"
+                    &ldquo;{testimonial.content}&rdquo;
                   </p>
                   <p className="font-semibold">{testimonial.author}</p>
                 </CardContent>
