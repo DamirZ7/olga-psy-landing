@@ -11,6 +11,10 @@ import { CalendlyEmbed } from "@/components/calendly-embed";
 
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -36,11 +40,24 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus("success");
-    }, 1500);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, message }),
+      });
+      if (res.ok) {
+        setFormStatus("success");
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("");
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
   };
 
   return (
@@ -130,6 +147,8 @@ export default function ContactPage() {
                     placeholder="Ваше имя"
                     required
                     disabled={formStatus !== "idle"}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -140,6 +159,8 @@ export default function ContactPage() {
                     placeholder="example@mail.ru"
                     required
                     disabled={formStatus !== "idle"}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -150,6 +171,8 @@ export default function ContactPage() {
                   type="tel"
                   placeholder="+7 (999) 123-45-67"
                   disabled={formStatus !== "idle"}
+                  value={phone}
+                  onChange={e => setPhone(e.target.value)}
                 />
               </div>
               <div className="space-y-2">
@@ -160,6 +183,8 @@ export default function ContactPage() {
                   rows={5}
                   required
                   disabled={formStatus !== "idle"}
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
                 />
               </div>
               <Button
