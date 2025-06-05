@@ -1,0 +1,127 @@
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Calendar } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+
+// This would typically come from a CMS or database
+const blogPosts = [
+  {
+    slug: "managing-anxiety-everyday-techniques",
+    title: "Управление тревогой: техники для повседневной жизни",
+    excerpt: "Простые, но эффективные стратегии, которые помогут справиться с тревожностью в повседневных ситуациях.",
+    date: "10 мая 2023",
+    image: "https://images.pexels.com/photos/3560044/pexels-photo-3560044.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    blurDataUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURIUFRYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEf/aAAwDAQACEQMRAD8AsONxc2UtAGSey7d8oiJtGf/Z",
+    category: "Тревожность",
+  },
+  {
+    slug: "burnout-recovery-self-care",
+    title: "Восстановление после выгорания: практики самопомощи",
+    excerpt: "Как распознать признаки выгорания и какие шаги предпринять для восстановления эмоционального баланса.",
+    date: "2 апреля 2023",
+    image: "https://images.pexels.com/photos/3771836/pexels-photo-3771836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    blurDataUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAdEAABBAMBAQAAAAAAAAAAAAABAAIDBBEhQVES/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAWEQEBAQAAAAAAAAAAAAAAAAABAAL/2gAMAwEAAhEDEQA/AJ7E1pCyGTlxGHDzuiiLFl//2Q==",
+    category: "Выгорание",
+  },
+  {
+    slug: "healthy-relationships-boundaries",
+    title: "Здоровые отношения: важность личных границ",
+    excerpt: "Как устанавливать и поддерживать здоровые границы в отношениях с партнёром, семьёй и коллегами.",
+    date: "15 марта 2023",
+    image: "https://images.pexels.com/photos/5699466/pexels-photo-5699466.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    blurDataUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURIUFRYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEf/aAAwDAQACEQMRAD8AsONxc2UtAGSey7d8oiJtGf/Z",
+    category: "Отношения",
+  },
+  {
+    slug: "mindfulness-daily-practice",
+    title: "Майндфулнес в повседневной жизни: простые практики",
+    excerpt: "Как интегрировать практики осознанности в повседневную жизнь для снижения стресса и повышения качества жизни.",
+    date: "28 февраля 2023",
+    image: "https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    blurDataUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURIUFRYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEf/aAAwDAQACEQMRAD8AsONxc2UtAGSey7d8oiJtGf/Z",
+    category: "Практики",
+  },
+  {
+    slug: "depression-understanding-treatment",
+    title: "Депрессия: понимание и современные методы лечения",
+    excerpt: "Что нужно знать о депрессии и какие подходы к лечению наиболее эффективны согласно современным исследованиям.",
+    date: "10 февраля 2023",
+    image: "https://images.pexels.com/photos/5699463/pexels-photo-5699463.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    blurDataUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURIUFRYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEf/aAAwDAQACEQMRAD8AsONxc2UtAGSey7d8oiJtGf/Z",
+    category: "Депрессия",
+  },
+  {
+    slug: "self-esteem-building-strategies",
+    title: "Стратегии повышения самооценки и уверенности в себе",
+    excerpt: "Практические упражнения и методики для развития здоровой самооценки и преодоления внутреннего критика.",
+    date: "15 января 2023",
+    image: "https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    blurDataUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIDBAURIUFRYf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEf/aAAwDAQACEQMRAD8AsONxc2UtAGSey7d8oiJtGf/Z",
+    category: "Самооценка",
+  },
+];
+
+export default function BlogPage() {
+  return (
+    <div className="pt-20">
+      <div className="bg-mint/30 py-12 dark:bg-accent/5 md:py-16 lg:py-20">
+        <div className="container mx-auto px-4">
+          <h1 className="mb-6 text-center font-playfair text-4xl font-bold md:text-5xl">
+            Блог
+          </h1>
+          <p className="mx-auto mb-0 max-w-2xl text-center text-lg text-muted-foreground">
+            Полезные статьи о психологии, самопомощи и личностном росте
+          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post) => (
+            <Card key={post.slug} className="h-full overflow-hidden transition-shadow hover:shadow-md">
+              <div className="aspect-video w-full overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  width={600}
+                  height={400}
+                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  placeholder="blur"
+                  blurDataURL={post.blurDataUrl}
+                />
+              </div>
+              <CardHeader className="p-4 pb-0">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
+                  <span>{post.date}</span>
+                  <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary-foreground">
+                    {post.category}
+                  </span>
+                </div>
+                <h2 className="mt-2 line-clamp-2 font-playfair text-xl font-semibold">
+                  {post.title}
+                </h2>
+              </CardHeader>
+              <CardContent className="p-4 pt-2">
+                <p className="line-clamp-3 text-muted-foreground">
+                  {post.excerpt}
+                </p>
+              </CardContent>
+              <CardFooter className="p-4 pt-0">
+                <Button asChild variant="link" className="px-0">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="flex items-center gap-2"
+                  >
+                    Читать полностью <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
