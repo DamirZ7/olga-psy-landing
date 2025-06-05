@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, PhoneCall, MessageCircle } from 'lucide-react'
 
 export function Footer() {
   return (
@@ -87,18 +87,44 @@ export function Footer() {
             <ul className='space-y-3'>
               <li className='flex items-center gap-2 text-sm text-muted-foreground'>
                 <Phone className='h-4 w-4' />
-                <span>+7 999 326-15-63</span>
+                <a
+                  href='tel:+79993261563'
+                  className='transition-colors hover:text-primary focus:text-primary outline-none'
+                >
+                  +7 999 326-15-63
+                </a>
               </li>
               <li className='flex items-center gap-2 text-sm text-muted-foreground'>
                 <Mail className='h-4 w-4' />
-                <a href='mailto:olga_zhaltyrova@mail.ru' className='hover:text-primary'>
+                <a
+                  href='mailto:olga_zhaltyrova@mail.ru'
+                  className='transition-colors hover:text-primary focus:text-primary outline-none'
+                >
                   olga_zhaltyrova@mail.ru
                 </a>
               </li>
-              {/* <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                <MapPin className="h-4 w-4 mt-0.5" />
-                <span>г. Москва, ул. Психологическая, д. 1</span>
-              </li> */}
+              <li className='flex items-center gap-2 text-sm text-muted-foreground'>
+                <PhoneCall className='h-4 w-4' />
+                <a
+                  href='https://wa.me/79993261563'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='transition-colors hover:text-primary focus:text-primary outline-none'
+                >
+                  WhatsApp
+                </a>
+              </li>
+              <li className='flex items-center gap-2 text-sm text-muted-foreground'>
+                <MessageCircle className='h-4 w-4' />
+                <a
+                  href='https://t.me/olgazhaltyrova'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='transition-colors hover:text-primary focus:text-primary outline-none'
+                >
+                  Telegram
+                </a>
+              </li>
             </ul>
           </div>
         </div>

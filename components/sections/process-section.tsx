@@ -66,11 +66,6 @@ export function ProcessSection() {
               variants={itemVariants}
               className="relative flex flex-col items-center text-center"
             >
-              {/* Step number */}
-              <div className="absolute -top-4 left-1/2 flex h-8 w-8 -translate-x-1/2 transform items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                {index + 1}
-              </div>
-
               {/* Icon */}
               <div className="mb-4 mt-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
                 <step.icon className="h-8 w-8 text-secondary-foreground" />
@@ -81,14 +76,6 @@ export function ProcessSection() {
                 {step.title}
               </h3>
               <p className="text-muted-foreground">{step.description}</p>
-
-              {/* Connector line */}
-              {index < steps.length - 1 && (
-                <div className="absolute right-0 top-20 hidden h-0.5 w-[calc(50%-2rem)] -translate-y-1/2 transform bg-border md:block"></div>
-              )}
-              {index < steps.length - 1 && (
-                <div className="absolute left-1/2 top-20 hidden h-0.5 w-[calc(50%-2rem)] -translate-y-1/2 transform bg-border md:block"></div>
-              )}
             </motion.div>
           ))}
         </motion.div>

@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -89,7 +89,39 @@ export default function ContactPage() {
               <h3 className="mb-2 font-playfair text-xl font-semibold">
                 Телефон
               </h3>
-              <p className="text-muted-foreground">+7 999 326-15-63</p>
+              <ul className="space-y-2">
+                <li className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <Phone className="h-4 w-4" />
+                  <a
+                    href="tel:+79993261563"
+                    className="transition-colors hover:text-primary focus:text-primary outline-none"
+                  >
+                    +7 999 326-15-63
+                  </a>
+                </li>
+                <li className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <PhoneCall className="h-4 w-4" />
+                  <a
+                    href="https://wa.me/79993261563"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-primary focus:text-primary outline-none"
+                  >
+                    WhatsApp
+                  </a>
+                </li>
+                <li className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <MessageCircle className="h-4 w-4" />
+                  <a
+                    href="https://t.me/olgazhaltyrova"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-primary focus:text-primary outline-none"
+                  >
+                    Telegram
+                  </a>
+                </li>
+              </ul>
               <p className="mt-2 text-sm text-muted-foreground">
                 Пн-Пт: 9:00 - 19:00
               </p>
@@ -105,7 +137,15 @@ export default function ContactPage() {
               <h3 className="mb-2 font-playfair text-xl font-semibold">
                 Email
               </h3>
-              <p className="text-muted-foreground">olga_zhaltyrova@mail.ru</p>
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                <Mail className="h-4 w-4" />
+                <a
+                  href="mailto:olga_zhaltyrova@mail.ru"
+                  className="transition-colors hover:text-primary focus:text-primary outline-none"
+                >
+                  olga_zhaltyrova@mail.ru
+                </a>
+              </div>
               <p className="mt-2 text-sm text-muted-foreground">
                 Отвечаю в течение 24 часов
               </p>

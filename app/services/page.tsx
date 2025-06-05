@@ -74,7 +74,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <Card key={service.id} className="h-full overflow-hidden transition-shadow hover:shadow-md">
+              <Card key={service.id} className="flex flex-col h-full overflow-hidden transition-shadow hover:shadow-md">
                 <div className="aspect-video w-full overflow-hidden">
                   <Image
                     src={service.image}
@@ -92,7 +92,7 @@ export default function ServicesPage() {
                     {service.shortDescription}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow">
                   <p>{service.description}</p>
                 </CardContent>
                 <CardFooter className="flex justify-between">
