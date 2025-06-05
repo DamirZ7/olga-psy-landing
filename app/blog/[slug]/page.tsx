@@ -51,6 +51,9 @@ export default function BlogPostPage({ params }: Params) {
             blurDataURL={post.blurDataUrl}
           />
           <p>{post.excerpt}</p>
+          {post.content?.map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
+          ))}
         </div>
       </div>
     </div>
