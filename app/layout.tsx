@@ -1,26 +1,60 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { inter, playfair } from './fonts';
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { ThemeProvider } from '@/components/theme-provider';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
+import './globals.css'
+import type { Metadata } from 'next'
+import { inter, playfair } from './fonts'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { ThemeProvider } from '@/components/theme-provider'
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Ольга Жалтырова | Психолог | Помощь при тревоге, стрессе и выгорании',
-  description: 'Квалифицированная психологическая помощь при тревожности, депрессии, проблемах в отношениях и эмоциональном выгорании. Запишитесь на бесплатную 15-минутную консультацию.',
-};
+  description:
+    'Квалифицированная психологическая помощь при тревожности, депрессии, проблемах в отношениях и эмоциональном выгорании. Запишитесь на бесплатную 15-минутную консультацию.',
+  keywords: 'психолог, психологическая помощь, тревожность, депрессия, отношения, эмоциональное выгорание, консультация психолога',
+  authors: [{ name: 'Ольга Жалтырова' }],
+  creator: 'Ольга Жалтырова',
+  publisher: 'Ольга Жалтырова',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://mental-balance.ru/'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Ольга Жалтырова | Психолог | Помощь при тревоге, стрессе и выгорании',
+    description: 'Квалифицированная психологическая помощь при тревожности, депрессии, проблемах в отношениях и эмоциональном выгорании. Запишитесь на бесплатную 15-минутную консультацию.',
+    url: 'https://mental-balance.ru/',
+    siteName: 'Ольга Жалтырова - Психолог',
+    locale: 'ru_RU',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ольга Жалтырова | Психолог',
+    description: 'Квалифицированная психологическая помощь при тревожности, депрессии, проблемах в отношениях и эмоциональном выгорании.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang='ru' suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
           <Header />
           <main>{children}</main>
           <Footer />
@@ -29,5 +63,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
