@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import StructuredData from '@/components/structured-data'
 import Analytics from '@/components/analytics'
+import YandexMetrica from '@/components/yandex-metrica'
 
 export const metadata: Metadata = {
   title: 'Ольга Жалтырова | Психолог | Помощь при тревоге, стрессе и выгорании',
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <VercelAnalytics />
           <SpeedInsights />
           <Analytics />
+          <YandexMetrica />
         </ThemeProvider>
       </body>
     </html>
