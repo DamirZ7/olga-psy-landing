@@ -113,13 +113,13 @@ const services = {
 };
 
 type ParamsType = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export default function ServicePage({ params }: ParamsType) {
-  const { slug } = params;
+export default async function ServicePage({ params }: ParamsType) {
+  const { slug } = await params;
   const service = services[slug as keyof typeof services];
 
   if (!service) {
