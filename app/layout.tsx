@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
+import StructuredData from '@/components/structured-data'
 
 export const metadata: Metadata = {
   title: 'Ольга Жалтырова | Психолог | Помощь при тревоге, стрессе и выгорании',
@@ -53,6 +54,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='ru' suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
           <Header />

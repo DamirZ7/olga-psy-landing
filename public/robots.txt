@@ -2,5 +2,13 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://mental-balance.ru/sitemap.xml 
+# Disallow admin and private routes
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://mental-balance.ru/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10 
