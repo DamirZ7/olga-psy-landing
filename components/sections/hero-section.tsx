@@ -35,7 +35,7 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-mint/30 to-white dark:from-accent/10 dark:to-background pt-20">
-      <div className="section-container flex flex-col items-center justify-center min-h-[calc(100vh-5rem)]">
+      <div className="section-container pt-0 md:pt-0 pb-16 md:pb-24 flex flex-col items-center justify-center min-h-[calc(100vh-5rem)]">
         <motion.div
           className="grid gap-12 lg:grid-cols-2 lg:gap-8 xl:gap-16 items-center"
           initial="hidden"
