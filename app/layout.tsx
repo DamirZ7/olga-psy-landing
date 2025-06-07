@@ -1,12 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { inter, playfair } from './fonts'
-import { Analytics } from '@vercel/analytics/next'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import StructuredData from '@/components/structured-data'
+import Analytics from '@/components/analytics'
 
 export const metadata: Metadata = {
   title: 'Ольга Жалтырова | Психолог | Помощь при тревоге, стрессе и выгорании',
@@ -62,8 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main>{children}</main>
           <Footer />
-          <Analytics />
+          <VercelAnalytics />
           <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
